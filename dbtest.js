@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(products => {
             const productsContainer = document.getElementById('products');
+            const productList = products.map(product => `<li>${product.product_name} - ${product.product_price}, Category: ${product.category}</li>`).join('');
+            productsContainer.innerHTML = `<ul>${productList}</ul>`;
             // Display products data similarly to users
         })
         .catch(error => console.error('Error fetching products:', error));
