@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
               <span class="order_date>:Order date ${order.order_date}</span>  
             </li>
           `).join('');
-      ordersContainer.innerHTML = `<ul class="order-list">${orderList}</ul>`;
+      ordersContainer.innerHTML = `<li class="order-list">${orderList}</li>`;
            
         })
         .catch(error => console.error('Error fetching orders:', error));
