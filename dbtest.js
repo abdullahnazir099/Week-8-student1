@@ -43,9 +43,9 @@ document.addEventListener('DOMContentLoaded', function () {
             <li class="order-item">
               <span class="order-id">ID:${order.order_id}</span>
               <span class="username">Name:${order.username}</span>
-              <span class="product-name>Product name ${order.product_name}</span>
-              <span class="quantity>Quantity: ${order.quantity}</span>
-              <span class="order_date>:Order date ${order.order_date}</span>  
+              <span class="product-name">Product name: ${order.product_name}</span>
+              <span class="quantity">Quantity: ${order.quantity}</span>
+              <span class="order_date">:Order date ${order.order_date}</span>  
             </li>
           `).join('');
       ordersContainer.innerHTML = `<ul class="order-list">${orderList}</ul>`;
