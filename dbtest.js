@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const ordersContainer = document.getElementById('orders');
             const orderList = orders.map(order=> `
             <h2>Orders</h2>
-            <li class="order-item">
+            <li >
               <span class="order-id">ID:${order.order_id}</span>
               <span class="username">Name:${order.username}</span>
               <span class="product-name>Product name ${order.product_name}</span>
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
               <span class="order_date>:Order date ${order.order_date}</span>  
             </li>
           `).join('');
-      ordersContainer.innerHTML = `<li class="order-list">${orderList}</li>`;
+      ordersContainer.innerHTML = `<ul class="order-list">${orderList}</ul>`;
            
         })
         .catch(error => console.error('Error fetching orders:', error));
