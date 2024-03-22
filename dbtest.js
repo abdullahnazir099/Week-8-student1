@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(orders => {
             const ordersContainer = document.getElementById('orders');
             const orderList = orders.map(order=> `
-            <h2>Orders</h2>
-            <li >
+          
+            <li class="order-item">
               <span class="order-id">ID:${order.order_id}</span>
               <span class="username">Name:${order.username}</span>
               <span class="product-name>Product name ${order.product_name}</span>
