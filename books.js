@@ -1,5 +1,5 @@
 
-function showBooks() {
+function fetchBooks() {
 
     const user = netlifyIdentity.currentUser();
     // if (!user) {
@@ -41,7 +41,7 @@ function showBooks() {
 }
 
 
-document.addEventListener('DOMContentLoaded', showBooks);
+document.addEventListener('DOMContentLoaded', fetchBooks);
 
 // Function to add a new book
 function addBook() {
@@ -61,13 +61,13 @@ function addBook() {
         .then(response => {
             if (response.ok) {
                 $('#addBookModal').modal('hide');
-                showBooks(); // Update the book list
+                fetchBooks(); // Update the book list
             }
         })
         .catch(error => console.error('Error:', error));
 }
 
-document.addEventListener('DOMContentLoaded', showBooks);
+document.addEventListener('DOMContentLoaded', fetchBooks);
 // Function to open the edit modal with book details
 async function openEditModal(bookId) {
     try {
@@ -106,7 +106,7 @@ function updateBook() {
         .then(response => {
             if (response.ok) {
                 $('#editBookModal').modal('hide');
-                showBooks(); // Update the book list
+                fetchBooks(); // Update the book list
             }
         })
         .catch(error => console.error('Error:', error));
@@ -120,12 +120,12 @@ function confirmDelete(bookId) {
         })
             .then(response => {
                 if (response.ok) {
-                    showBooks(); // Update the book list
+                    fetchBooks(); // Update the book list
                 }
             })
             .catch(error => console.error('Error:', error));
     }
 }
 
-// Run the showBooks function on page load
-document.addEventListener('DOMContentLoaded', showBooks());
+// Run the fetchBooks function on page load
+document.addEventListener('DOMContentLoaded', fetchBooks());
