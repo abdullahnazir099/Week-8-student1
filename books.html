@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books</title>
-  
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -48,17 +48,19 @@
 
 
         <div class="container mt-4">
-        
-          
 
-          
+
+
+
 
             <div id="books-container"></div>
         </div>
-        
+
         <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addBookModal">
             Add Book
         </button>
+        <button onclick="window.netlifyIdentity && window.netlifyIdentity.open('login')">Log In</button>
+        <button onclick="window.netlifyIdentity && window.netlifyIdentity.logout()">Log Out</button>
         <!-- Add Book Modal -->
         <div class="modal fade" id="addBookModal" tabindex="-1" role="dialog" aria-labelledby="addBookModalLabel"
             aria-hidden="true">
@@ -148,30 +150,30 @@
         <script>
             if (window.netlifyIdentity) {
                 window.netlifyIdentity.on("init", () => {
-                const user = netlifyIdentity.currentUser();
-                console.log('Netlify Identity initial user state:', user);
-                
-                if (!user) {
-                console.log('No user found, opening login modal');
-                netlifyIdentity.open("login"); // Automatically opens login modal
-                } else {
-                // User is logged in; perform actions as needed
-                console.log('User found:', user);
-                fetchBooks();
-                }
-                netlifyIdentity.on("login", (user) => {
-                console.log('User logged in', user);
-                netlifyIdentity.close();
-                fetchBooks();
+                    const user = netlifyIdentity.currentUser();
+                    console.log('Netlify Identity initial user state:', user);
+
+                    if (!user) {
+                        console.log('No user found, opening login modal');
+                        netlifyIdentity.open("login"); // Automatically opens login modal
+                    } else {
+                        // User is logged in; perform actions as needed
+                        console.log('User found:', user);
+                        fetchBooks();
+                    }
+                    netlifyIdentity.on("login", (user) => {
+                        console.log('User logged in', user);
+                        netlifyIdentity.close();
+                        fetchBooks();
+                    });
+                    netlifyIdentity.on("logout", () => {
+                        console.log('User logged out');
+                        document.location.href = "/books.html";
+                    });
                 });
-                netlifyIdentity.on("logout", () => {
-                console.log('User logged out');
-                document.location.href = "/books.html";
-                });
-                });
-                } else {
+            } else {
                 console.error('Netlify Identity script not found. Ensure it is loaded before this script.');
-                }
+            }
         </script>
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
