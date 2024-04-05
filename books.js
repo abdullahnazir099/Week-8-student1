@@ -2,11 +2,11 @@
 function showBooks() {
 
     const user = netlifyIdentity.currentUser();
-    if (!user) {
+    // if (!user) {
        
-        console.log('User not logged in');
-        return;
-    }
+    //     console.log('User not logged in');
+    //     return;
+    // }
     
     user.jwt().then((token) => {
        
