@@ -156,9 +156,9 @@
 
                     if (!user) {
                         console.log('No user found, opening login modal');
-                        netlifyIdentity.open("login"); // Automatically opens login modal
+                        netlifyIdentity.open("login"); 
                     } else {
-                        // User is logged in; perform actions as needed
+                    
                         console.log('User found:', user);
                         fetchBooks();
                     }

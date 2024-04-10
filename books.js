@@ -43,7 +43,7 @@ function fetchBooks() {
 
 document.addEventListener('DOMContentLoaded', fetchBooks);
 
-// Function to add a new book
+
 function addBook() {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
@@ -51,11 +51,7 @@ function addBook() {
     const publishedYear = document.getElementById('publishedYear').value;
     const genre = document.getElementById('genre').value;
     const user = netlifyIdentity.currentUser();
-    // if (!user) {
-
-    //     console.log('User not logged in');
-    //     return;
-    // }
+  
 
     user.jwt().then((token) => {
 
@@ -80,59 +76,16 @@ function addBook() {
 }
 
 document.addEventListener('DOMContentLoaded', fetchBooks);
-// Function to open the edit modal with book details
-// async function openEditModal(bookId) {
-//     try {
-//         const response = await fetch(`/.netlify/functions/readBook?id=${bookId}`);
-//         const book = await response.json();
 
-//         document.getElementById('editBookId').value = book.id;
-//         document.getElementById('editTitle').value = book.title;
-//         document.getElementById('editAuthor').value = book.author;
-//         document.getElementById('editISBN').value = book.isbn || '';
-//         document.getElementById('editPublishedYear').value = book.published_year;
-//         document.getElementById('editGenre').value = book.genre || '';
-
-//         $('#editBookModal').modal('show');
-//     } catch (error) {
-//         console.error('Error fetching book details:', error);
-//     }
-// }
-
-// // Function to update an existing book
-// function updateBook() {
-//     const id = document.getElementById('editBookId').value;
-//     const title = document.getElementById('editTitle').value;
-//     const author = document.getElementById('editAuthor').value;
-//     const isbn = document.getElementById('editISBN').value;
-//     const publishedYear = document.getElementById('editPublishedYear').value;
-//     const genre = document.getElementById('editGenre').value;
-
-//     fetch('/.netlify/functions/updateBook', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({ id, title, author, isbn, published_year: publishedYear, genre }),
-//     })
-//         .then(response => {
-//             if (response.ok) {
-//                 $('#editBookModal').modal('hide');
-//                 fetchBooks(); // Update the book list
-//             }
-//         })
-//         .catch(error => console.error('Error:', error));
-// }
 
 
 function openEditModal(bookId) {
     console.log("Book Id", bookId)
 
-    // First, get the current user using Netlify Identity
     const user = netlifyIdentity.currentUser();
 
     user.jwt().then((token) => {
-        // Use the `fetch` API with the Authorization header
+      
         fetch(`/.netlify/functions/readBook?id=${bookId}`, {
             method: 'POST',
             headers: {
@@ -169,7 +122,7 @@ function updateBook() {
 
     const user = netlifyIdentity.currentUser();
 
-    // Now, retrieve the user's token. Netlify Identity manages token refresh for you.
+  
     user.jwt().then((token) => {
         fetch('/.netlify/functions/updateBook', {
             method: 'POST',
@@ -183,7 +136,7 @@ function updateBook() {
             .then(data => {
                 console.log('Book updated:', data);
                 $('#editBookModal').modal('hide');
-                fetchBooks(); // Refresh the books list
+                fetchBooks(); 
             })
             .catch(error => console.error('Error updating book:', error));
     });
